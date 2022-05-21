@@ -1,5 +1,32 @@
 usb_cam [![Build Status](https://api.travis-ci.org/bosch-ros-pkg/usb_cam.png)](https://travis-ci.org/bosch-ros-pkg/usb_cam)
 =======
+### USAGE
+Enter the following in the terminal **on the Jetson**:
+```
+cd catkin_ws/src
+git clone https://github.com/oliverburrus/usb_cam.git
+ifconfig
+```
+locate your inet ip and add the following to the bashrc **on the Jetson**:
+```
+export ROS_MASTER_URI='http://{inet ip jetson}:11311'
+export ROS_IP='{inet ip jetson}'
+```
+
+Enter the following in the terminal **on your laptop**:
+```
+ifconfig
+```
+locate your inet ip (should be similar to the Jetson) and add the following to the bashrc **on your laptop**:
+```
+export ROS_MASTER_URI='http://{inet ip jetson}:11311'
+export ROS_IP='{inet ip laptop}'
+```
+Connect the 2 webcams and launch the launch file **on the Jetson**:
+```
+roslaunch usb_cam usb_cam-test.launch
+```
+Lastly, run rviz **on your laptop**, add two images and change the topics to usb_cam0/image_raw and usb_cam1/image_raw and change both from raw to compressed.
 
 #### A ROS Driver for V4L USB Cameras
 This package is based off of V4L devices specifically instead of just UVC.
